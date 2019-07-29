@@ -1,0 +1,231 @@
+body{
+    background-color:whitesmoke;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    align-content: center;
+    text-align: center;
+}
+
+.container{
+    max-width: 1920px;
+    padding-top: 2%;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+table{
+    background-color: lightgray;
+    border: 0.5px solid darkgray;
+    border-radius: 5px;
+}
+
+.chatbox, .loginbox{
+    background-color: lightgray;
+    border: 0.5px solid darkgray;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.loginbox{
+    width: 300px;
+}
+
+.userlist{
+    background-color: whitesmoke;
+    border: 0.5px solid darkgray;
+    border-radius: 5px;
+    height: 400px;
+    padding-bottom: 30px;
+    margin-bottom: 10px;
+    text-align: left;
+    overflow: hidden;
+}
+
+.title{
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+
+.chatbottom{
+    display: grid;
+    grid-template-columns: 60% 20% 20%;
+}
+
+.chat{
+    padding: 20px 20px;
+    margin: 10px 10px;
+    background-color: white;
+    border-radius: 5px;
+    height: 400px;
+}
+
+.login{
+    padding: 20px 20px;
+    margin: 10px 10px;
+    background-color: white;
+    border-radius: 5px;
+    max-height: 400px !important;
+}
+
+
+.btn, .chatinput, .logininput{
+    background-color: lightgray;
+    border: 0.5px solid darkgray;
+    border-radius: 5px;
+    font: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    padding: 10px 10px;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 5px !important;
+    color: black;
+}
+
+.chatinput:focus, .logininput:focus{
+    background-color: white;
+    color: black;
+    border: 0.5px solid darkgray;
+    border-radius: 5px;
+}
+
+.btn:hover{
+    background-color: white;
+    border: 0.5px solid darkgray;
+    border-radius: 5px;
+}
+
+#logout{
+    position: absolute;
+    top:10px;
+    right:10px;
+}
+.scroll{
+    word-wrap: break-word;
+	overflow-y: auto;
+}
+.scrollbar{
+	background: #F5F5F5;
+}
+.scroll::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+.scroll::-webkit-scrollbar{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+.scroll::-webkit-scrollbar-thumb{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+.error{
+    color:darkred;
+}
+.centered{
+    display: flex;
+    justify-content: center;
+    text-align: center; 
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+.mg-t-10{
+    margin-top: 10px !important;
+}
+.mg-b-10{
+    margin-bottom: 10px !important;
+}
+.mg-b-20{
+    margin-bottom: 20px !important;
+}
+.vanilla{
+    text-decoration: none;
+}
+.vanilla:hover{
+    text-decoration: none;
+}
+.user{
+    font-weight: bold;
+}
+.admin{
+    font-weight: bold;
+    color: darkred;
+}
+.wciecie{
+    padding-left:40px;
+}
+.login{
+    color: gray;
+    text-align: center;
+}
+.personal{
+    color: gray;
+    padding-left:5px;
+}
+p{
+    display: inline;
+}
+.wpis{
+    padding: 5px;
+}
+.onlineuser{
+    margin-left: 20px;
+}
+.tip{
+    max-height: 25px;
+    margin-bottom: 5px;
+}
+
+/* Tooltip container */
+.tooltipx {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Tooltip text */
+  .tooltipx .tooltiptextx {
+    visibility: hidden;
+    width: 250px;
+    background-color: lightgray;
+    color: rgb(92, 92, 92);
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+  
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -125px;
+  
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  /* Tooltip arrow */
+  .tooltipx .tooltiptextx::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltipx:hover .tooltiptextx {
+    visibility: visible;
+    opacity: 1;
+  }
