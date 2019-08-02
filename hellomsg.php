@@ -6,7 +6,7 @@
     $sql = "SELECT user_flag from users where user_id='$user_id';";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
-    //user rights
+    //user flag
     $_SESSION["permiss"] = $row["user_flag"];
     //chat color
     if ($_SESSION["permiss"]==1){
