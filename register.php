@@ -1,5 +1,5 @@
 <?php 
-    //podłączenie do bazy danych i podstawowe zmienne
+    //db connection and basic variables
     include('more/conf.php');
     $registerErr="";
     $allowed=array("q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m","1","2","3","4","5","6","7","8","9","0","ą","ę","ś","ż","ź","ć","ń","ł","ó");
@@ -8,41 +8,41 @@
         $login=$_POST["newlogin"];
         $password=addslashes($_POST["newpassw"]);
         $checklogin=str_split(mb_strtolower($login, 'UTF-8'));
-        //sprawdzenie długości loginu
+        //check login lenght
         if (strlen($login)==0){
             $registerErr = "Login nie może być pusty";
         }
         else if (strlen($login)<$login_len+1){
-            //sprawdzenie czy użyte znaki są dozwolone
+            //check if every char is allowed
             foreach($checklogin as $character){
                 if ($character!=""){
                     if (!in_array($character, $allowed)) {
-                        $registerErr = "Dozwolone są tylko polskie znaki i cyfry";
+                        $registerErr = "Only polish chars and digits are allowed";
                     }
                 }
             }
         }
         else {
-            $registerErr = "Login jest za długi";
+            $registerErr = "Login is too long";
         }
         if (strlen($password)>$passw_len){
             if($registerErr==""){
-                $registerErr = "Hasło jest za długie";
+                $registerErr = "Password is too long";
             }
             else{
-                $registerErr = "Login i hasło są za długie";
+                $registerErr = "Login and password are too long";
             }
         }
         if($registerErr==""){
             $sql = "SELECT user_id, login from users where login='$login';";
             $result = $conn->query($sql);
-            //jeżeli nie ma użytkowników z podanym loginem to załóż
+            //if user doesnt exist then register
             if ($result->num_rows == 0){
                 $sql = "INSERT INTO users (login, password, user_flag) values ('$login', '$password', 0);";
                 $result = $conn->query($sql);
                 header("location: login.php");
             }
-            //jeżeli istnieje już taki użytkownik
+            //if user exist
             else {
                 $registerErr="Podany login jest już zajęty";
             }
@@ -69,10 +69,10 @@
                             <input class="logininput" id="input" name="newlogin" placeholder="Login" type="text" maxlength="<?php echo $login_len;?>" required autofocus>
                             <input class="logininput" id="input" name="newpassw" placeholder="Hasło" type="password" maxlength="<?php echo $passw_len;?>" required>
                             <p class="error mg-b-20"><?php echo $registerErr ?></p>
-                            <button class="btn" type="submit" name="register">Zarejestruj się</button>
+                            <button class="btn" type="submit" name="register">Register</button>
                         </form>
                         <form action="login.php" method="POST">
-                            <a class="vanilla mg-t-10"><button class="btn">Cofnij do logowania</button></a>
+                            <a class="vanilla mg-t-10"><button class="btn">Back to login</button></a>
                         </form>
                     </div>
                 </div>
