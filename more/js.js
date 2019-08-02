@@ -1,8 +1,8 @@
-//scroll na dole
+//scroll to bottom
 var textarea = document.getElementById("scroll");
 textarea.scrollTop = textarea.scrollHeight;
 
-//wyslanie wiadomosci
+//send message
 function submitek(){
     var formData = {};
     formData["wiadomosc"] = document.getElementById("wiadomosc").value;
@@ -12,7 +12,7 @@ function submitek(){
     });
 }
 
-//wylogowanie sie
+//log out
 function logout(){
     var formData = {};
     formData["logout"] = "wylogujmito";
@@ -21,7 +21,7 @@ function logout(){
     });
 }
 
-//reload chatboxu i scroll na dole, gdy zmieni się liczba wpisów
+//reload chatbox and scroll to bottom if something changed
 var last=$(".wpis").length;
 function reload(){
     $("#scroll").load("content.php", function(){
@@ -36,7 +36,7 @@ function reload(){
 setInterval(reload, 2000);
 reload();
 
-//submit na enterek/logout na esc
+//submit on enter/logout on esc
 $('body').keydown(function (e) {
     if(e.keyCode == 27) {
         var r = confirm("Czy chcesz się wylogować?");
@@ -50,7 +50,7 @@ $('body').keydown(function (e) {
     }
 });
 
-//focus podczas nacisniecia przycisku
+//focus on keydown
 $(document).bind('keydown',function(e){
     $('#wiadomosc').focus();   
 });
