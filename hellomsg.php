@@ -1,19 +1,19 @@
 <?php 
-    //podłączenie do bazy danych i podstawowe zmienne
+    //db connection and basic variables
     include('more/conf.php');
 
-    //ponowne pobieranie flagi aktualnego użytkownika przydatne przy odświeżaniu koloru na czacie w razie zmiany uprawnień
+    //get user flag again
     $sql = "SELECT user_flag from users where user_id='$user_id';";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
-    //uprawnienia
+    //user rights
     $_SESSION["permiss"] = $row["user_flag"];
-    //kolorek na czacie
+    //chat color
     if ($_SESSION["permiss"]==1){
         $user="\"admin\"";
     }
     else {
         $user="\"user\"";
     }
-    echo "<p>Witaj <p class=".$user.">".$login."</p> na czacie "."<p class=\"user\">".$_SESSION["chat"]."</p></p>";
+    echo "<p>Hello <p class=".$user.">".$login."</p> on chat "."<p class=\"user\">".$_SESSION["chat"]."</p></p>";
 ?>
