@@ -10,7 +10,7 @@
         $checklogin=str_split(mb_strtolower($login, 'UTF-8'));
         //check login lenght
         if (strlen($login)==0){
-            $registerErr = "Login nie może być pusty";
+            $registerErr = "Login cant be empty";
         }
         else if (strlen($login)<$login_len+1){
             //check if every char is allowed
@@ -44,7 +44,7 @@
             }
             //if user exist
             else {
-                $registerErr="Podany login jest już zajęty";
+                $registerErr="Login is already taken";
             }
         }
     }
