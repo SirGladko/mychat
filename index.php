@@ -1,17 +1,17 @@
 <?php
-    //podłączenie do bazy danych i podstawowe zmienne
+    //db connection and basic variables
     include('more/conf.php');
 
-    //pobieranie flagi i daty zalogowania, aktualnego użytkownika
+    //get user flag and login date
     $sql = "SELECT user_flag, date from users where user_id='$user_id';";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
-    //data zalogowania
+    //login date
     $_SESSION["logindate"] = $row["date"];
-    //uprawnienia
+    //user flag
     $_SESSION["permiss"] = $row["user_flag"];
 
-    //logout gdy nie ma sesji
+    //logout if login session is empty
     if (empty($_SESSION["login"])){
         header("Location: login.php");
     }
@@ -30,7 +30,7 @@
     <div class="container">
         <div class="col-lg-12">
             <div class="col-lg-9">
-                <div id="hellomsg">Witaj // na czacie //</div>
+                <div id="hellomsg">Hello // on chat //</div>
                 <div class="chatbox">
                     <div class="chat scroll" id="scroll"> 
                     </div>
