@@ -1,19 +1,19 @@
 <?php
-    //podłączenie do bazy danych i podstawowe zmienne
+    //db connection and basic variables
     include('more/conf.php');
     
-    //wypisuje wszystkich użytkowników przypisanych do aktualnego czatu 
+    //write every user marked to your chat
     $sql="SELECT login, user_flag FROM users WHERE chat_used='$chat_id' ORDER BY user_flag DESC, login;";
     $result = $conn->query($sql);
     while($row = $result->fetch_assoc()) {
-        //kolorek
+        //color
         if ($row["user_flag"]==1){
             $userwpis="<div class=\"onlineuser admin\">";
         }
         else {
             $userwpis="<div class=\"onlineuser user\">";
         }
-        //wypisanie
+        //write
         if ($row["user_flag"]!=2){
             echo $userwpis.$row["login"]."</div>";
         }
