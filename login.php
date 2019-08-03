@@ -134,7 +134,7 @@
                             <div class="mg-b-20 error"><?php echo $loginErr ?></div>
                             <div class="tooltipx">
                                 <img class="tip" src="more/tip.png">
-                                <span class="tooltiptextx">Logujesz się do czatu o podanej nazwie, jeżeli on nie istnieje to jest automatycznie tworzony nowy z podanym hasłem. Aby wejść na czat główny, zostaw to pole puste</span>
+                                <span class="tooltiptextx">You are logging to named chat, if its not existing then you are instantly creating it with given name. If you want to enter default chat then just leave "chat name" blank</span>
                             </div>
                             <input class="logininput tipbox" name="chat" placeholder="Chat name" type="text" maxlength="<?php echo $chat_len;?>" >
                             <input class="logininput mg-b-20" name="chatpassw" placeholder="Chat password" type="password" maxlength="<?php echo $chat_passw_len;?>">
