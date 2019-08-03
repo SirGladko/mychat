@@ -130,14 +130,14 @@
                     <div class="login">
                         <form action="" method="POST">
                             <input class="logininput" name="login" placeholder="Login" type="text" maxlength="<?php echo $login_len;?>" required autofocus>
-                            <input class="logininput" name="passw" placeholder="Hasło" type="password" maxlength="<?php echo $passw_len;?>" required>
+                            <input class="logininput" name="passw" placeholder="Password" type="password" maxlength="<?php echo $passw_len;?>" required>
                             <div class="mg-b-20 error"><?php echo $loginErr ?></div>
                             <div class="tooltipx">
                                 <img class="tip" src="more/tip.png">
                                 <span class="tooltiptextx">Logujesz się do czatu o podanej nazwie, jeżeli on nie istnieje to jest automatycznie tworzony nowy z podanym hasłem. Aby wejść na czat główny, zostaw to pole puste</span>
                             </div>
-                            <input class="logininput tipbox" name="chat" placeholder="Nazwa czatu" type="text" maxlength="<?php echo $chat_len;?>" >
-                            <input class="logininput mg-b-20" name="chatpassw" placeholder="Hasło czatu" type="password" maxlength="<?php echo $chat_passw_len;?>">
+                            <input class="logininput tipbox" name="chat" placeholder="Chat name" type="text" maxlength="<?php echo $chat_len;?>" >
+                            <input class="logininput mg-b-20" name="chatpassw" placeholder="Chat password" type="password" maxlength="<?php echo $chat_passw_len;?>">
                             <p class="mg-b-20 error"><?php echo $chatErr ?></p>
                             <button class="btn mg-b-10" name="submitek" type="submit">Log in</button>
                         </form>
