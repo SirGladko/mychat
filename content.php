@@ -111,7 +111,7 @@
             else if ($row["record_flag"]==7){
                 if($row["login"]==$login){
                     $last_printed_user="";
-                    echo "<div class=\"personal wpis\"><p></p><div class=class=\"personal\"><p>Spis Komend</p></div>
+                    echo "<div class=\"personal wpis\"><p></p><div class=class=\"personal\"><p>Command list</p></div>
                     <div class=\"personal\"><p>/ban (nick)           -ban</p></div>
                     <div class=\"personal\"><p>/unban (nick)         -unban</p></div>
                     <div class=\"personal\"><p>/del (record id)      -delete message with this id</p></div>
