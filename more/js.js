@@ -39,7 +39,7 @@ reload();
 //submit on enter/logout on esc
 $('body').keydown(function (e) {
     if(e.keyCode == 27) {
-        var r = confirm("Czy chcesz się wylogować?");
+        var r = confirm("Do you want to logout?");
         if (r == true) {
             logout();
         }
