@@ -39,7 +39,7 @@
             <div class="col-lg-3">
                 <div class="userlist">
                     <div class="title centered">
-                        Lista użytkowników
+                        Userlist
                     </div>
                     <div id="userlist">
                     </div>
@@ -47,7 +47,7 @@
             </div>
             <div class="col-lg-9">
                 <div class="col-lg-8"><input class="chatinput" id="wiadomosc" type="text" maxlength="<?php echo $max_char;?>" autofocus autocomplete="off"></div>
-                <div class="col-lg-2"><button class="btn send" onclick="submitek()">Wyślij</button></div>
+                <div class="col-lg-2"><button class="btn send" onclick="submitek()">Send</button></div>
                 <div class="col-lg-2"><button class="btn" onclick="logout()">Logout</button></div>
             </div>
         </div>
