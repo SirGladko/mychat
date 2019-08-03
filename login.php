@@ -1,49 +1,48 @@
 <?php 
-    //podłączenie do bazy danych i podstawowe zmienne
+    //db connection and basic variables
     include('more/conf.php');
 
     $loginErr="";
     $chatErr="";
-    //defaultowy czat
     if (isset($_POST["submitek"])){
-        //sprawdzanie wpisanego czatu
+        //check entered chat
         if (isset($_POST["chat"])){
-            //czy nie jest za długi
+            //if its not too long
             if(strlen($_POST["chat"])>$chat_len){
-                $chatErr="Wprowadzony czat jest za długi";
+                $chatErr="Chat name is too long";
             }
             else{
-                //defaultowy czat
+                //default chat
                 if (strlen($_POST["chat"])==0){
                     $chat="default";
                     $chatpassw="";
                 }
-                //czat wprowadzony
+                //entered chat
                 else{
                     $chat=htmlspecialchars(addslashes($_POST["chat"]));
                     $chatpassw=addslashes($_POST["chatpassw"]);
                 }
-                //sprawdzanie czy wprowadzony czat istnieje
+                //check if entered chat exist
                 $sql = "SELECT chat_id, chat_name, chat_password from chats where chat_name='$chat';";
                 $result = $conn->query($sql);
                 if ($result->num_rows == 1){
                     $row = $result->fetch_assoc();
-                    //sprawdzanie czy wprowadzone hasło nie jest za długie
+                    //if password isnt too long
                     if(strlen($chatpassw)>$chat_passw_len){
-                        $chatErr="Wprowadzone hasło jest za długie";
+                        $chatErr="Chat password is too long";
                     }
-                    //sprawdzenie poprawności hasła
+                    //check if password is correct
                     else{
                         if ($row["chat_password"]==$chatpassw){
                             $chat=$row["chat_name"];
                             $chat_id=$row["chat_id"];
                         }
                         else{
-                            $chatErr="Złe hasło do czatu";
+                            $chatErr="Chat password isnt correct";
                         }
                     }
                 }
-                //tworzenie nowego czatu, jeżeli taki nie istnieje
+                //create new chat if it doesnt exist
                 else{
                     $sql = "INSERT INTO chats (chat_name, chat_password, chat_flag) values ('$chat', '$chatpassw', 0);";
                     $result = $conn->query($sql);
@@ -56,23 +55,23 @@
         
         $login=addslashes($_POST["login"]);
         $password=addslashes($_POST["passw"]);
-        //sprawdzanie loginu i hasla
+        //check login and password
         if (strlen($login)==0 or strlen($login)>$login_len){
-            $loginErr="zły login lub hasło";
+            $loginErr="login or password incorrect";
         }
         else{
             $sql = "SELECT user_id, login, password, user_flag from users where login='$login';";
             $result = $conn->query($sql);
             if ($result->num_rows == 1){
                 $row = $result->fetch_assoc();
-                //jeżeli hasło poprawne
+                //if password is correct
                 if ($row["login"]==$login && $row["password"]==$password){
-                    //jeżeli konto jest z flagą bana
+                    //if account is banned
                     if ($row["user_flag"]==2){
-                        $loginErr="Konto zostało zablokowane";
+                        $loginErr="Account is banned";
                     }
                     else{
-                        //jeżeli dobrze wpisany chat
+                        //if chat is without error
                         if ($chatErr==""){
                             $_SESSION["login"]=$row["login"];
                             $_SESSION["user_id"]=$row["user_id"];
@@ -80,26 +79,26 @@
                             $_SESSION["chat_id"]=$chat_id;
 
                             $user_id = $row["user_id"];
-                            //update ostatniej daty logowania oraz do którego czatu jest się zalogowanym
+                            //update login date and mark used chat
                             $sql = "UPDATE users SET date = current_timestamp, last_active = current_timestamp, chat_used = '$chat_id' WHERE user_id = '$user_id';";
                             $result = $conn->query($sql);
-                            //info o dołączeniu do czatu
+                            //info about used chat
                             $sql = "INSERT INTO records (user_id, chat_id, record_flag, text) values ('$user_id', '$chat_id', 2, '***$login IN***');";
                             $result = $conn->query($sql);
                         }
                     }
                 }
                 else{
-                    $loginErr="zły login lub hasło";
+                    $loginErr="login or password incorrect";
                 }
             }
             else{
-                $loginErr="zły login lub hasło";
+                $loginErr="login or password incorrect";
             }
         }
     }
 
-    //jeżeli sesja użytkownika nie jest pusta to przejdź do czatu
+    //if login session isnt empty, go to index
     if (!empty($_SESSION["login"])){
         header("location: /");
     }
@@ -117,10 +116,10 @@
     </head>
     <body>
         <?php
-            //jeżeli został wylogowany przez bana
+            //if he was banned, alert message
             if (isset($_SESSION["ban"])){
                 if ($_SESSION["ban"]==1){
-                    echo "<script>alert(\"Twoje konto zostało zablokowane\");</script>";
+                    echo "<script>alert(\"Your account was banned\");</script>";
                     $_SESSION["ban"]=0;
                 }
             }
@@ -140,10 +139,10 @@
                             <input class="logininput tipbox" name="chat" placeholder="Nazwa czatu" type="text" maxlength="<?php echo $chat_len;?>" >
                             <input class="logininput mg-b-20" name="chatpassw" placeholder="Hasło czatu" type="password" maxlength="<?php echo $chat_passw_len;?>">
                             <p class="mg-b-20 error"><?php echo $chatErr ?></p>
-                            <button class="btn mg-b-10" name="submitek" type="submit">Zaloguj się</button>
+                            <button class="btn mg-b-10" name="submitek" type="submit">Log in</button>
                         </form>
                         <form action="register.php" method="POST">
-                            <a class="vanilla mg-t-10"><button class="btn">Zarejestruj się</button></a>
+                            <a class="vanilla mg-t-10"><button class="btn">Register</button></a>
                         </form>
                     </div>
                 </div>
