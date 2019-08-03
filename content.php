@@ -11,6 +11,7 @@
         $_SESSION["ban"]=1;
         echo "<script>window.location.href = 'login.php' </script>";
     }
+    //this is the part to logout and unbind from chat, users that are idle for given amount of time (every user bound to chat is visible on userlist)
     //check last active date for every user that is assigned to your chat and log them out if its expired
     $sql = "SELECT user_id, user_flag, login, last_active FROM users WHERE chat_used='$chat_id';";
     $result = $conn->query($sql);
